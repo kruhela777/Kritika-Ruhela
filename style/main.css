@@ -65,17 +65,21 @@ body {
 }
 
 /* Hero */
+.hero-content {
+  margin-top: 60px; /* Adjust this value to shift image down */
+  text-align: center;
+}
+
 .hero {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 80px);
-  text-align: center;
   padding: 2rem;
+  text-align: center;
 }
 
 .hero-logo {
-    margin-top: 200px;
   font-size: 6rem;
   line-height: 0.8;
   color: #2c3845;
