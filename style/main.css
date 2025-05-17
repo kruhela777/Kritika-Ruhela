@@ -80,6 +80,8 @@ body {
 }
 
 .hero-logo {
+    height: 400px;
+    width: 400px;
   font-size: 6rem;
   line-height: 0.8;
   color: #2c3845;
