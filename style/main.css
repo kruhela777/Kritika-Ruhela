@@ -67,7 +67,7 @@ body {
 /* Hero */
 /* Add padding to the hero section to push content below the fixed navbar */
 .hero {
-  height: 100vh;
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
