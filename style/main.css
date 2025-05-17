@@ -95,8 +95,8 @@ body {
   position: sticky;
   top: 100px;
   z-index: 10;
-  width: 80px; /* adjust size */
-  height: auto;
+  width: 150px;   /* increased from 80px */
+  height: auto;   /* keeps aspect ratio */
 }
 
 .left-gif {
@@ -108,3 +108,4 @@ body {
   float: right;
   margin-right: 30px;
 }
+
