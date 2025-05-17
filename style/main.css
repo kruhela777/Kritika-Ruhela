@@ -66,7 +66,7 @@ body {
 
 /* Hero */
 .hero-content {
-  margin-top: 40px; 
+  margin-top: 100px; /* Increased from 40px to 100px */
   text-align: center;
 }
 
@@ -79,16 +79,12 @@ body {
   text-align: center;
 }
 
-.hero-logo {
-  font-size: 6rem;
-  line-height: 0.8;
-  color: #2c3845;
+.hero-logo img {
+  margin-top: 100px; /* Reduced from 200px to 100px */
+  height: 300px;
+  width: 300px;
 }
-.hero-logo img{
-    margin-top: 200px;
-    height: 300px;
-    width: 300px;
-}
+
 
 .sticky-gif-container {
   position: relative;
