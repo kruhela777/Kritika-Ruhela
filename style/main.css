@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: 'Playfair Display', serif;
-  background-color: white;
-  color: #2D3743;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: white;
+    color: #2D3743;
 }
 
 /* Navbar */
@@ -75,6 +75,7 @@ body {
 }
 
 .hero-logo {
+    margin-top: 50px;
   font-size: 6rem;
   line-height: 0.8;
   color: #2c3845;
