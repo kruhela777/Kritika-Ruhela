@@ -88,3 +88,26 @@ body {
     height: 700px;
     width: 700px;
 }
+
+.sticky-gif-container {
+  position: relative;
+  height: 200vh; /* to test scrolling */
+}
+
+.sticky-gif {
+  position: sticky;
+  top: 100px;
+  z-index: 10;
+  width: 80px; /* adjust size */
+  height: auto;
+}
+
+.left-gif {
+  float: left;
+  margin-left: 30px;
+}
+
+.right-gif {
+  float: right;
+  margin-right: 30px;
+}
