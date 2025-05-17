@@ -70,20 +70,12 @@ body {
   text-align: center;
 }
 
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px);
-  padding: 2rem;
-  text-align: center;
-}
-
 .hero-logo img {
   margin-top: 100px; /* Reduced from 200px to 100px */
   height: 300px;
   width: 300px;
 }
+
 
 
 .sticky-gif-container {
