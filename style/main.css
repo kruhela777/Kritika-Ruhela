@@ -1,0 +1,94 @@
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  background-color: white;
+  color: #1e293b;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2c3845;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.nav-links a {
+  margin-left: 2rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #94D2BD;
+}
+
+.signup-btn {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: white;
+  color: #2c3845;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-logo {
+  font-size: 6rem;
+  line-height: 0.8;
+  color: #2c3845;
+}
+
+.hero-title {
+  font-size: 2rem;
+  margin-top: 1rem;
+  letter-spacing: 3px;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+  color: #4b5563;
+}
