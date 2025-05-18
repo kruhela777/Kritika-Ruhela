@@ -2,54 +2,132 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: #f9f9f9;
-  padding: 20px;
+}
+/*header*/
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2D3743;
+  padding: 10px 30px;
+  color: white;
+  height: 60px;
 }
 
-.main-header {
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 50px;
+}
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.header-right i {
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.invoice-list-container {
+  padding: 30px;
+  background: #ffffff;
+  margin: 20px auto;
+  max-width: 1000px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.invoice-list-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th, .invoice-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.invoice-table th {
   background-color: #2D3743;
   color: white;
-  padding: 20px;
+}
+
+.invoice-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.invoice-table td button {
+  padding: 5px 10px;
+  background-color: #f9aa33;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/*sidebar*/
+.sidebar {
+  position: absolute;
+  top: 60px; /* Below your header */
+  right: 0;
+  height: calc(1300px - 60px); /* Full height minus header */
+  width: 60px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  color: #000;
+  z-index: 1000;
+  border-left: 2px solid #ffffff;
+}
+
+.sidebar h4 {
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  writing-mode: unset; /* or remove this line */
+  transform: none;     /* or remove this line */
   text-align: center;
 }
 
-.dashboard-container {
-  max-width: 900px;
-  margin: 20px auto;
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-#invoiceList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-  gap: 20px;
-}
-
-.invoice-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 20px;
+.sidebar li {
+  margin: 20px 0;
+  font-size: 20px;
   cursor: pointer;
-  transition: box-shadow 0.2s ease;
+  transition: color 0.3s;
 }
 
-.invoice-card:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.invoice-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.invoice-meta {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.invoice-total {
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #f9aa33;
+.sidebar li:hover {
+  color: #f4a525;
 }

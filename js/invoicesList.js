@@ -1,38 +1,34 @@
-// Load invoices from localStorage and display them
-function loadInvoices() {
-  const invoiceList = document.getElementById('invoiceList');
-  const invoices = JSON.parse(localStorage.getItem('invoices') || '[]');
+document.addEventListener('DOMContentLoaded', () => {
+  const tableBody = document.getElementById('invoiceTableBody');
+  const invoices = JSON.parse(localStorage.getItem('invoicesList')) || [];
 
   if (invoices.length === 0) {
-    invoiceList.innerHTML = '<p>No saved invoices found.</p>';
+    tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No invoices found.</td></tr>';
     return;
   }
 
-  invoiceList.innerHTML = '';
+  invoices.forEach((invoice, index) => {
+    const row = document.createElement('tr');
 
-  invoices.forEach(inv => {
-    const card = document.createElement('div');
-    card.className = 'invoice-card';
-
-    card.innerHTML = `
-      <div class="invoice-title">${inv.title || 'Untitled Invoice'}</div>
-      <div class="invoice-meta">
-        <div><strong>Invoice No:</strong> ${inv.invoiceNo || '-'}</div>
-        <div><strong>Date:</strong> ${inv.date || '-'}</div>
-      </div>
-      <div class="invoice-total">Grand Total: $${inv.grandTotal.toFixed(2)}</div>
+    row.innerHTML = `
+      <td>${invoice.invoiceNo || '-'}</td>
+      <td>${invoice.billTo?.clientName || '-'}</td>
+      <td>${invoice.date || '-'}</td>
+      <td>$${invoice.grandTotal.toFixed(2)}</td>
+      <td>
+        <button onclick="previewInvoice(${index})">Preview</button>
+      </td>
     `;
 
-    // Optional: click to open preview of this invoice in new window/tab
-    card.addEventListener('click', () => {
-      openInvoicePreview(inv);
-    });
-
-    invoiceList.appendChild(card);
+    tableBody.appendChild(row);
   });
-}
+});
 
-function openInvoicePreview(data) {
+function previewInvoice(index) {
+  const invoices = JSON.parse(localStorage.getItem('invoicesList')) || [];
+  const data = invoices[index];
+  if (!data) return;
+
   const previewWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes');
 
   const html = `
@@ -51,9 +47,9 @@ function openInvoicePreview(data) {
     <body>
       <h1>${data.title || 'Invoice'}</h1>
       <div class="header-section">
-        <strong>Invoice No:</strong> ${data.invoiceNo || '-'}<br/>
-        <strong>Account No:</strong> ${data.accountNo || '-'}<br/>
-        <strong>Date:</strong> ${data.date || '-'}
+        <strong>Invoice No:</strong> ${data.invoiceNo}<br/>
+        <strong>Account No:</strong> ${data.accountNo}<br/>
+        <strong>Date:</strong> ${data.date}
       </div>
 
       <div style="display:flex; gap: 40px; margin-top: 20px;">
@@ -89,7 +85,7 @@ function openInvoicePreview(data) {
         <tbody>
           ${data.items.map(item => `
             <tr>
-              <td>${item.description || '-'}</td>
+              <td>${item.description}</td>
               <td class="right-align">${item.price.toFixed(2)}</td>
               <td class="right-align">${item.quantity.toFixed(2)}</td>
               <td class="right-align">${item.total.toFixed(2)}</td>
@@ -98,16 +94,16 @@ function openInvoicePreview(data) {
         </tbody>
       </table>
 
-      <div class="footer-section" style="margin-top: 20px;">
+      <div class="footer-section">
         <p><strong>Total Quantity:</strong> ${data.totalQty.toFixed(2)}</p>
         <p><strong>Subtotal:</strong> $${data.subtotal.toFixed(2)}</p>
         <p><strong>Tax (${data.taxPercent}%):</strong> $${(data.subtotal * data.taxPercent / 100).toFixed(2)}</p>
         <h3>Grand Total: $${data.grandTotal.toFixed(2)}</h3>
       </div>
 
-      <div class="notes" style="margin-top: 30px;">
+      <div class="notes">
         <h3>Notes</h3>
-        <p>${data.notes || '-'}</p>
+        <p>${data.notes}</p>
       </div>
     </body>
     </html>
@@ -116,5 +112,3 @@ function openInvoicePreview(data) {
   previewWindow.document.write(html);
   previewWindow.document.close();
 }
-
-window.addEventListener('DOMContentLoaded', loadInvoices);
