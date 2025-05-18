@@ -57,7 +57,7 @@ body, html {
   position: absolute;
   top: 60px; /* Below your header */
   right: 0;
-  height: calc(1300px - 60px); /* Full height minus header */
+  height: calc(1200px - 60px); /* Full height minus header */
   width: 60px;
   background-color: #ffffff;
   display: flex;
