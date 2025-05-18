@@ -8,7 +8,7 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: white;
-    color: #ffffff;
+    color: #222;
 }
 
 /* Navbar */
@@ -62,6 +62,52 @@ body {
 .signup-btn:hover {
   background-color: white;
   color: #2D3743;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 999; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; 
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.close {
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Hero */
@@ -400,16 +446,31 @@ body {
   color: white;
   display: flex;
   justify-content: space-between;
+  align-items: center; /* ensures icons/text are vertically aligned */
+  padding: 10px 0;
   cursor: pointer;
+  transition: background 0.3s ease; /* subtle hover effect */
+}
+
+.accordion-header:hover {
+  background: rgba(255, 255, 255, 0.05); /* light hover effect */
 }
 
 .accordion-body {
-  display: none;
-  padding: 10px 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
   color: #cbd5e0;
   font-size: 0.95rem;
-  transition: all 0.3s ease-in-out;
+  transition: max-height 0.3s ease, padding 0.3s ease;
 }
+
+/* Active state (apply via JS with class like 'active') */
+.accordion-body.active {
+  max-height: 500px; /* or use scrollHeight via JS */
+  padding: 10px 0;
+}
+
 
 
 /*footer*/
@@ -488,6 +549,7 @@ body {
   padding-top: 20px;
   font-size: 0.9rem;
 }
+
 
 /* Custom fonts */
 .ez-font {

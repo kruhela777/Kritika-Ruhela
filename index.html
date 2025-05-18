@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="EZINVOICE simplifies your invoicing process with automated tools and an intuitive dashboard.">
   <title>EZINVOICE - Invoicing Made Effortless</title>
   <link rel="stylesheet" href="style/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet">
@@ -20,12 +21,29 @@
       </div>
     </div>
     <nav class="nav-links">
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#contact">Contact</a>
-      <a href="#signup" class="signup-btn">Sign Up</a>
+      <a href="#about-us" class="nav-link">About</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#footer" class="nav-link">Contact</a>
+      <a href="javascript:void(0)" class="signup-btn" id="open-signup-modal">Sign Up</a>
+
     </nav>
   </header>
+
+  <!-- Sign Up Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Sign Up</h2>
+    <form>
+      <input type="text" id="name" placeholder="Full Name" required><br>
+      <input type="email" id="email" placeholder="Email" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+
+      <button type="submit" id="submit-signup-form">Register</button>
+
+    </form>
+  </div>
+</div>
 
   <!-- Hero Section -->
   <div class="hero">
@@ -55,7 +73,7 @@
 
 
 <!--features-->
-<section class="why-choose-section">
+<section id="features" class="why-choose-section">
   <div class="choose-container">
 
     <!-- Center Circle -->
@@ -113,6 +131,7 @@
 
 <!--faq section-->
 <!-- FAQ Intro Section Start -->
+
 <section id="faq-section" class="faq-intro">
   <div class="faq-container">
     <div class="faq-text">
@@ -164,7 +183,7 @@
 
 
 <!--footer-->
-<footer class="footer">
+<footer id="footer" class="footer">
   <div class="footer-container">
     <div class="footer-left">
       <div class="logo">
@@ -185,7 +204,7 @@
         <ul>
           <li><a href="#about-us">About</a></li>
           <li><a href="#features">Features</a></li>
-          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#faq-section">FAQs</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
       </div>
@@ -193,10 +212,10 @@
       <div class="footer-contact">
         <h4>Contact Us</h4>
         <ul>
-          <li><a href="#">LinkedIn</a></li>
+          <li><a href="www.linkedin.com/in/kritika-ruhela-254911285" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+          <li><a href="https://github.com/kruhela777" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
           <li><a href="#">Instagram</a></li>
           <li><a href="mailto:ruhela.kritika777@gmail.com">E-mail</a></li>
-          <li><a href="#">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -209,6 +228,193 @@
 </footer>
 
 
-
 </body>
+<script>
+  const headers = document.querySelectorAll('.accordion-header');
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const isOpen = body.style.display === 'block';
+      document.querySelectorAll('.accordion-body').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.accordion-header span').forEach(el => el.textContent = '+');
+      if (!isOpen) {
+        body.style.display = 'block';
+        header.querySelector('span').textContent = '−';
+      }
+    });
+  });
+</script>
+
+<script>
+  const modal = document.getElementById("signupModal");
+  const btn = document.getElementById("signupBtn");
+  const span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+<script>
+  document.getElementById("signup-submit").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent actual form submission
+    // Optionally, validate input fields here
+    window.location.href = "dashboard.html"; // Redirect to dashboard
+  });
+</script>
+
+<script>
+  document.getElementById("signup-submit").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    const email = document.querySelector(".modal-content input[type='email']");
+    const password = document.querySelector(".modal-content input[type='password']");
+
+    if (email.value.trim() && password.value.trim()) {
+      window.location.href = "dashboard.html";
+    } else {
+      alert("Please fill in both email and password.");
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Modal functionality
+    const modal = document.getElementById("signupModal");
+    const openModalBtn = document.getElementById("signup-submit");
+    const closeModal = document.querySelector(".modal .close");
+
+    if (openModalBtn && modal && closeModal) {
+      openModalBtn.onclick = () => modal.style.display = "block";
+      closeModal.onclick = () => modal.style.display = "none";
+      window.onclick = (e) => {
+        if (e.target == modal) modal.style.display = "none";
+      };
+    }
+
+    // Accordion functionality
+    const headers = document.querySelectorAll(".accordion-header");
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        header.classList.toggle("active");
+        const body = header.nextElementSibling;
+        if (body) {
+          body.style.display = body.style.display === "block" ? "none" : "block";
+        }
+      });
+    });
+  });
+</script>
+
+  <script>
+    // Open modal when clicking navbar Sign Up
+    document.getElementById("open-signup-modal").addEventListener("click", function () {
+      document.getElementById("signupModal").style.display = "block";
+    });
+
+    // Handle form submission
+    document.getElementById("submit-signup-form").addEventListener("click", function (event) {
+      event.preventDefault();
+      const email = document.querySelector("#email");
+      const password = document.querySelector("#password");
+
+      if (email.value.trim() && password.value.trim()) {
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Please fill in both email and password.");
+      }
+    });
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get elements
+    const openModalBtn = document.getElementById("open-signup-modal");
+    const modal = document.getElementById("signupModal");
+    const closeModalBtn = document.querySelector(".modal .close");
+    const submitBtn = document.getElementById("submit-signup-form");
+
+    // Open modal
+    openModalBtn.addEventListener("click", function () {
+      modal.style.display = "block";
+    });
+
+    // Close modal on cross click
+    closeModalBtn.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+
+    // Close modal on outside click
+    window.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Form submission
+    submitBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+
+      if (email.value.trim() && password.value.trim()) {
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Please fill in both email and password.");
+      }
+    });
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const isActive = body.classList.contains('active');
+
+      // Close all open items
+      document.querySelectorAll('.accordion-body').forEach(item => {
+        item.classList.remove('active');
+        item.style.maxHeight = null;
+        item.previousElementSibling.querySelector('span').textContent = '+';
+      });
+
+      // Toggle the current one
+      if (!isActive) {
+        body.classList.add('active');
+        body.style.maxHeight = body.scrollHeight + "px";
+        header.querySelector('span').textContent = '–';
+      }
+    });
+  });
+</script>
+
+<script>
+  // Accordion
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const isOpen = body.style.display === 'block';
+      document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
+      document.querySelectorAll('.accordion-header span').forEach(span => span.textContent = '+');
+      if (!isOpen) {
+        body.style.display = 'block';
+        header.querySelector('span').textContent = '-';
+      }
+    });
+  });
+</script>
+
+
 </html>
