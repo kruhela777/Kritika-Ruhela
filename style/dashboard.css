@@ -161,7 +161,6 @@ body, html {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s ease;
 }
 
 .action-button:hover {
