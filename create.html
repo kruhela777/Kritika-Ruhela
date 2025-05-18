@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create New Invoice</title>
+  <link rel="stylesheet" href="style/create.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="js/create.js" defer></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-left">
+        <img src="logo-header.png" alt="EZ Logo" class="logo" />
+    </div>
+    <div class="header-right">
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-cog"></i>
+        <img src="avatar.png" alt="Profile" class="profile-icon" />
+    </div>
+  </header>
+
+  <main class="invoice-container">
+    <div class="invoice-box">
+      <h2>Create New Invoice</h2>
+
+      <div class="invoice-title">
+        <label for="invoiceTitle">Title of Invoice</label>
+        <input type="text" id="invoiceTitle" placeholder="Enter Title">
+      </div>
+
+      <div class="invoice-section">
+        <div class="column">
+          <h3>From</h3>
+          <input type="text" placeholder="Business Name" />
+          <input type="email" placeholder="name@business.com" />
+          <input type="text" placeholder="Street" />
+          <input type="text" placeholder="[123] 453-3412" />
+        </div>
+
+        <div class="column">
+          <h3>Bill To</h3>
+          <input type="text" placeholder="Client Name" />
+          <input type="email" placeholder="name@business.com" />
+          <input type="text" placeholder="Street" />
+          <input type="text" placeholder="[123] 453-3412" />
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <section class="invoice-section">
+  <table class="invoice-table" id="invoiceTable">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="invoiceBody">
+      <tr>
+        <td><input type="text" placeholder="Desc" class="desc" /></td>
+        <td><input type="number" value="300" class="price" /></td>
+        <td><input type="number" value="1" class="qty" /></td>
+        <td><input type="text" class="row-total" value="300.00" readonly /></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="add-btn-wrapper">
+    <button id="addRow" class="add-btn">➕</button>
+  </div>
+
+  <div class="summary">
+    <div class="qty-summary">
+      <strong>Total Qty: <span id="totalQty" style="color: red;">1.00</span> Qty</strong>
+    </div>
+    <div class="sub-summary">
+      <strong>Sub Total</strong>
+      <span id="subTotal" class="gray-text">300.00</span>
+    </div>
+    <div class="tax-summary">
+      <label for="taxInput">Tax Percentage %</label>
+      <input type="number" id="taxInput" value="0" />
+    </div>
+    <div class="grand-summary">
+      <strong>Grand Total</strong>
+      <span id="grandTotal" class="gray-text">300.00</span>
+    </div>
+  </div>
+</section>
+
+<script>
+function updateInvoiceTotals() {
+  const rows = document.querySelectorAll('#invoiceBody tr');
+  let subtotal = 0;
+  let totalQty = 0;
+
+  rows.forEach(row => {
+    const price = parseFloat(row.querySelector('.price').value) || 0;
+    const qty = parseFloat(row.querySelector('.qty').value) || 0;
+    const rowTotal = price * qty;
+
+    row.querySelector('.row-total').value = rowTotal.toFixed(2);
+    subtotal += rowTotal;
+    totalQty += qty;
+  });
+
+  document.getElementById('subTotal').innerText = subtotal.toFixed(2);
+  document.getElementById('totalQty').innerText = totalQty.toFixed(2);
+
+  const taxPercent = parseFloat(document.getElementById('taxInput').value) || 0;
+  const grandTotal = subtotal + (subtotal * taxPercent / 100);
+  document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+}
+
+document.getElementById('addRow').addEventListener('click', () => {
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td><input type="text" placeholder="Desc" class="desc" /></td>
+    <td><input type="number" value="0" class="price" /></td>
+    <td><input type="number" value="1" class="qty" /></td>
+    <td><input type="text" class="row-total" value="0.00" readonly /></td>
+  `;
+  document.getElementById('invoiceBody').appendChild(row);
+
+  row.querySelectorAll('.price, .qty').forEach(input => {
+    input.addEventListener('input', updateInvoiceTotals);
+  });
+
+  updateInvoiceTotals();
+});
+
+document.querySelectorAll('.price, .qty').forEach(input => {
+  input.addEventListener('input', updateInvoiceTotals);
+});
+
+document.getElementById('taxInput').addEventListener('input', updateInvoiceTotals);
+
+// Initial calculation
+updateInvoiceTotals();
+</script>
+
+
+<div class="invoice-metadata">
+  <div class="meta-left">
+    <div>
+      <label>Invoice No.</label>
+      <input type="text" id="invoiceNo" />
+    </div>
+    <div>
+      <label>Account No.</label>
+      <input type="text" id="accountNo" />
+    </div>
+    <div>
+      <label>Date</label>
+      <input type="date" id="invoiceDate" />
+    </div>
+    <div class="action-buttons">
+      <button id="saveInvoiceBtn">Create Invoice</button>
+    </div>
+  </div>
+  <div class="meta-right">
+    <label>Notes</label>
+    <textarea id="invoiceNotes" placeholder="Notes - any relevant information not covered, additional terms and conditions."></textarea>
+    <button id="previewBtn">Preview</button>
+  </div>
+</div>
+
+
+
+</body>
+</html>

@@ -152,6 +152,22 @@ body, html {
   justify-content: center;
   gap: 20px;
 }
+.action-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2D3743;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #e2952e;
+}
+
 
 .invoice-actions button {
   padding: 10px 20px;
