@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <td>
         <button onclick="previewInvoice(${index})">Preview</button>
         <button onclick="downloadInvoice(${index})">Download</button>
+        <button onclick="deleteInvoice(${index})" style="margin-left:10px;color:red;">Delete</button>
       </td>
     `;
 
@@ -206,4 +207,16 @@ function downloadInvoice(index) {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+function deleteInvoice(index) {
+  const confirmation = confirm('Are you sure you want to delete this invoice?');
+  if (!confirmation) return;
+
+  const invoices = JSON.parse(localStorage.getItem('invoicesList')) || [];
+  invoices.splice(index, 1); // Remove invoice at index
+  localStorage.setItem('invoicesList', JSON.stringify(invoices));
+
+  // Reload to reflect changes
+  location.reload();
 }
