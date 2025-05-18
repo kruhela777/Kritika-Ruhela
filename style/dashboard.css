@@ -111,41 +111,67 @@ body, html {
 
 .dashboard-cards {
   display: flex;
-  justify-content: center;
-  gap: 30px;
   flex-wrap: wrap;
+  justify-content: flex-start; /* Align left, better for cards + table */
+  gap: 30px;
   margin-bottom: 40px;
+  padding: 10px;
+  background: #f5f5f5; /* Light background for clarity */
+  border-radius: 12px;
 }
 
+/* Individual cards styling */
 .dashboard-cards .card {
-  background: linear-gradient(145deg, #ccc, #999);
+  background: linear-gradient(145deg, #e0e0e0, #b0b0b0);
   border-radius: 12px;
   padding: 20px;
   width: 200px;
   color: #000;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  flex-shrink: 0;
+  margin-left: 120px;
 }
 
-.recent-invoices {
-  background: #1f242e;
-  padding: 30px;
-  border-radius: 16px;
-}
-
-.recent-invoices h2 {
-  margin-bottom: 20px;
-}
-
-.recent-invoices table {
-  width: 100%;
+/* Style the table inside dashboard-cards */
+.dashboard-cards table {
+  flex-grow: 1;
+  min-width: 600px;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-top: 10px;
 }
 
-.recent-invoices th, .recent-invoices td {
-  border: 1px solid #444;
-  padding: 10px;
-  font-size: 0.95rem;
+/* Table header and cell styling */
+.dashboard-cards th, 
+.dashboard-cards td {
+  border: 1px solid #ccc;
+  padding: 12px 15px;
+  font-size: 1rem;
+  color: #333;
+  text-align: left;
 }
+
+/* Header row background */
+.dashboard-cards thead th {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+}
+
+/* Zebra stripe for table rows */
+.dashboard-cards tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect on table rows */
+.dashboard-cards tbody tr:hover {
+  background-color: #e3f2fd;
+  cursor: pointer;
+}
+
 
 .invoice-actions {
   display: flex;

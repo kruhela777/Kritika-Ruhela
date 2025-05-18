@@ -36,60 +36,26 @@
     <h1 class="welcome-heading">WELCOME.....</h1>
 
     <section class="dashboard-cards">
-      <div class="card total-invoices">
-        <h3>Total Invoices</h3>
-        <p><strong>245</strong><br>Invoices created so far</p>
-      </div>
-      <div class="card pending-payments">
-        <h3>Pending Payments</h3>
-        <p><strong>36</strong><br>Awaiting payments</p>
-      </div>
-      <div class="card last-invoice-date">
-        <h3>Last Invoice Date</h3>
-        <p><strong>12th May, 2025</strong><br>Last Invoice issued on</p>
-      </div>
+        <div class="card total-invoices">
+            <h3>Total Invoices</h3>
+            <p><strong id="totalInvoices">245</strong><br>Invoices created so far</p>
+        </div>
+        <div class="card pending-payments">
+            <h3>Pending Payments</h3>
+            <p><strong id="pendingPayments">36</strong><br>Awaiting payments</p>
+        </div>
+        <div class="card last-invoice-date">
+            <h3>Last Invoice Date</h3>
+            <p><strong id="lastInvoiceDate">12th May, 2025</strong><br>Last Invoice issued on</p>
+        </div>
+        <table>
+            <thead>
+
+            </thead>
+            <tbody id="recentInvoicesBody"></tbody>
+        </table>
     </section>
 
-    <section class="recent-invoices">
-      <h2>Recent Invoices</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Invoice #</th>
-            <th>Client Name</th>
-            <th>Date Created</th>
-            <th>Amount</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>INV-00123</td>
-            <td>John Doe</td>
-            <td>May 12, 2025</td>
-            <td>$320.00</td>
-            <td style="color: green;">✅ Paid</td>
-            <td>
-              <a href="#">🔍 View</a> |
-              <a href="#">✏️ Edit</a> |
-              <a href="#">🗑 Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>INV-00124</td>
-            <td>Acme Corp.</td>
-            <td>May 13, 2025</td>
-            <td>$740.00</td>
-            <td style="color: red;">❌ Unpaid</td>
-            <td>
-              <a href="#">🔍 View</a> |
-              <a href="#">✏️ Edit</a> |
-              <a href="#">🗑 Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
       <div class="invoice-actions">
         <a href="create.html" class="action-button">Create Invoice ➕</a>
@@ -161,4 +127,62 @@
 </footer>
 
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const invoices = JSON.parse(localStorage.getItem("invoicesList")) || [];
+
+    // 1. Total Invoices
+    document.getElementById("totalInvoices").textContent = invoices.length;
+
+    // 2. Pending Payments
+    const pending = invoices.filter(inv => inv.status?.toLowerCase() === "unpaid").length;
+    document.getElementById("pendingPayments").textContent = pending;
+
+    // 3. Last Invoice Date
+    if (invoices.length > 0) {
+      const lastDate = invoices[invoices.length - 1].date;
+      document.getElementById("lastInvoiceDate").textContent = lastDate || 'N/A';
+    } else {
+      document.getElementById("lastInvoiceDate").textContent = "N/A";
+    }
+
+    // 4. Populate Recent Invoices Table
+    const recentTable = document.getElementById("recentInvoicesBody");
+    recentTable.innerHTML = "";
+
+    invoices.slice().reverse().slice(0, 5).forEach((invoice, index) => {
+      const row = document.createElement("tr");
+
+      const status = invoice.status?.toLowerCase() === "paid" ? 
+        `<td style="color: green;">✅ Paid</td>` : 
+        `<td style="color: red;">❌ Unpaid</td>`;
+
+      row.innerHTML = `
+        <td>${invoice.invoiceNo || '-'}</td>
+        <td>${invoice.billTo?.clientName || '-'}</td>
+        <td>${invoice.date || '-'}</td>
+        <td>$${invoice.grandTotal?.toFixed(2) || '0.00'}</td>
+        ${status}
+        <td>
+          <a href="#">🔍 View</a> |
+          <a href="#">✏️ Edit</a> |
+          <a href="#" onclick="deleteInvoice(${invoices.length - 1 - index})">🗑 Delete</a>
+        </td>
+      `;
+
+      recentTable.appendChild(row);
+    });
+  });
+
+  function deleteInvoice(index) {
+    const confirmation = confirm("Are you sure you want to delete this invoice?");
+    if (!confirmation) return;
+
+    const invoices = JSON.parse(localStorage.getItem("invoicesList")) || [];
+    invoices.splice(index, 1);
+    localStorage.setItem("invoicesList", JSON.stringify(invoices));
+    location.reload(); // Refresh to reflect dashboard changes
+  }
+</script>
+
 </html>
