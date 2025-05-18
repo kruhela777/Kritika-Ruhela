@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | EZInvoice</title>
+  <link rel="stylesheet" href="style/dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-left">
+        <img src="logo-header.png" alt="EZ Logo" class="logo" />
+    </div>
+    <div class="header-right">
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-cog"></i>
+        <img src="avatar.png" alt="Profile" class="profile-icon" />
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <h4>Menu</h4>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i></a></li>
+        <li><i class="fas fa-plus"></i></li>
+        <li><i class="fas fa-folder"></i></li>
+        <li><i class="fas fa-sign-out-alt"></i></li>
+    </ul>
+   </div>
+
+
+  <main class="dashboard">
+    <h1 class="welcome-heading">WELCOME.....</h1>
+
+    <section class="dashboard-cards">
+      <div class="card total-invoices">
+        <h3>Total Invoices</h3>
+        <p><strong>245</strong><br>Invoices created so far</p>
+      </div>
+      <div class="card pending-payments">
+        <h3>Pending Payments</h3>
+        <p><strong>36</strong><br>Awaiting payments</p>
+      </div>
+      <div class="card last-invoice-date">
+        <h3>Last Invoice Date</h3>
+        <p><strong>12th May, 2025</strong><br>Last Invoice issued on</p>
+      </div>
+    </section>
+
+    <section class="recent-invoices">
+      <h2>Recent Invoices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Invoice #</th>
+            <th>Client Name</th>
+            <th>Date Created</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>INV-00123</td>
+            <td>John Doe</td>
+            <td>May 12, 2025</td>
+            <td>$320.00</td>
+            <td style="color: green;">✅ Paid</td>
+            <td>
+              <a href="#">🔍 View</a> |
+              <a href="#">✏️ Edit</a> |
+              <a href="#">🗑 Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>INV-00124</td>
+            <td>Acme Corp.</td>
+            <td>May 13, 2025</td>
+            <td>$740.00</td>
+            <td style="color: red;">❌ Unpaid</td>
+            <td>
+              <a href="#">🔍 View</a> |
+              <a href="#">✏️ Edit</a> |
+              <a href="#">🗑 Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="invoice-actions">
+        <button>Create Invoice ➕</button>
+        <button>View All 📄</button>
+      </div>
+
+      <div class="dashboard-widgets">
+        <div class="chart-widget">
+            <h3>Invoice Status Chart Widget</h3>
+            <img src="pie-chart.gif" alt="Invoice Pie Chart">
+        </div>
+
+        <div class="activity-widget">
+            <h3>Recent Activities <i class="fa fa-history"></i></h3>
+            <ul class="activity-list">
+                <li><strong>[14:20]</strong> Invoice #123 edited</li>
+                <li><strong>[13:40]</strong> Invoice #124 exported</li>
+                <li><strong>[12:05]</strong> Invoice #125 deleted</li>
+            </ul>
+        </div>
+       </div>
+
+    </section>
+  </main>
+
+<!--footer-->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <div class="logo">
+        <span class="ez-font">EZ</span><span class="invoice-font">INVOICE</span>
+      </div>
+
+      <p><i class="fas fa-envelope"></i> ruhela.kritika777@gmail.com</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-middle">
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about-us">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="mailto:ruhela.kritika777@gmail.com">E-mail</a></li>
+          <li><a href="#">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>Terms of Service</span>
+    <span>Privacy Policy</span>
+  </div>
+</footer>
+
+</body>
+</html>

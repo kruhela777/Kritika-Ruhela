@@ -1,0 +1,306 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #2D3743; /* Match your main background */
+  font-family: 'Poppins', sans-serif;
+}
+
+/*header*/
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2D3743;
+  padding: 10px 30px;
+  color: white;
+  height: 60px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 50px;
+}
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.header-right i {
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/*sidebar*/
+.sidebar {
+  position: absolute;
+  top: 60px; /* Below your header */
+  right: 0;
+  height: calc(1300px - 60px); /* Full height minus header */
+  width: 60px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  color: #000;
+  z-index: 1000;
+  border-left: 2px solid #1f242e;
+}
+
+.sidebar h4 {
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  writing-mode: unset; /* or remove this line */
+  transform: none;     /* or remove this line */
+  text-align: center;
+}
+
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 20px 0;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sidebar li:hover {
+  color: #f4a525;
+}
+/*dashboard*/
+.dashboard {
+  padding: 40px 80px 40px 20px; /* Add right padding */
+  background-color: #3c4857;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+
+.welcome-heading {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.dashboard-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.dashboard-cards .card {
+  background: linear-gradient(145deg, #ccc, #999);
+  border-radius: 12px;
+  padding: 20px;
+  width: 200px;
+  color: #000;
+}
+
+.recent-invoices {
+  background: #1f242e;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.recent-invoices h2 {
+  margin-bottom: 20px;
+}
+
+.recent-invoices table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.recent-invoices th, .recent-invoices td {
+  border: 1px solid #444;
+  padding: 10px;
+  font-size: 0.95rem;
+}
+
+.invoice-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.invoice-actions button {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.invoice-actions button:hover {
+  background-color: #f4a525;
+  color: #000;
+}
+
+.dashboard-widgets {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 50px;
+  border-radius: 16px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.chart-widget, .activity-widget {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  width: 400px;
+}
+
+.chart-widget h3, .activity-widget h3 {
+  margin-bottom: 15px;
+  margin-left: 20px;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activity-list {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 6px;
+  list-style: none;
+}
+
+.activity-list li {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.activity-list li:last-child {
+  margin-bottom: 0;
+}
+
+
+/*footer*/
+.footer {
+  background-color: #000;
+  color: white;
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-left .logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-left p {
+  margin: 12px 0;
+}
+
+.social-icons a {
+  margin-right: 12px;
+  color: white;
+  font-size: 1.4rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #f4a525;
+}
+
+/* Middle container to hold links and contact side by side */
+.footer-middle {
+  display: flex;
+  gap: 200px; /* Reduce to 30px if needed */
+  flex-wrap: wrap;
+  margin-right: 300px;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li,
+.footer-contact ul li {
+  margin: 6px 0;
+}
+
+.footer-links ul li a,
+.footer-contact ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  font-size: 0.9rem;
+}
+
+/* Custom fonts */
+.ez-font {
+  font-family: 'Moo Lah Lah', cursive;
+  color: #F4A525;
+  font-size: 32px;
+}
+
+.invoice-font {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #F4A525;
+  font-size: 32px;
+}
